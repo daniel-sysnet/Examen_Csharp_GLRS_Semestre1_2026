@@ -1,0 +1,82 @@
+@model Inscription
+
+@{
+    ViewData["Title"] = "Créer une Inscription";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 class="mb-4">@ViewData["Title"]</h2>
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <form method="post" action="@Url.Action("Creer", "Inscription")" novalidate>
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label for="EtudiantId" class="form-label">Étudiant <span class="text-danger">*</span></label>
+                    <select class="form-select @(ModelState.IsValidField("EtudiantId") ? "" : "is-invalid")" 
+                            id="EtudiantId" name="EtudiantId" required>
+                        <option value="">-- Sélectionner un étudiant --</option>
+                        @foreach (var etudiant in ViewBag.Etudiants)
+                        {
+                            <option value="@etudiant.Id">@etudiant.Nom @etudiant.Prenom (@etudiant.Matricule)</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(m => m.EtudiantId, "", new { @class = "invalid-feedback" })
+                </div>
+
+                <div class="mb-3">
+                    <label for="ClasseId" class="form-label">Classe <span class="text-danger">*</span></label>
+                    <select class="form-select @(ModelState.IsValidField("ClasseId") ? "" : "is-invalid")" 
+                            id="ClasseId" name="ClasseId" required>
+                        <option value="">-- Sélectionner une classe --</option>
+                        @foreach (var classe in ViewBag.Classes)
+                        {
+                            <option value="@classe.Id">@classe.Code - @classe.Libelle</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(m => m.ClasseId, "", new { @class = "invalid-feedback" })
+                </div>
+
+                <div class="mb-3">
+                    <label for="AnneeScolaireId" class="form-label">Année Scolaire <span class="text-danger">*</span></label>
+                    <select class="form-select @(ModelState.IsValidField("AnneeScolaireId") ? "" : "is-invalid")" 
+                            id="AnneeScolaireId" name="AnneeScolaireId" required>
+                        <option value="">-- Sélectionner une année scolaire --</option>
+                        @foreach (var annee in ViewBag.Annees)
+                        {
+                            <option value="@annee.Id">@annee.Code - @annee.Libelle</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(m => m.AnneeScolaireId, "", new { @class = "invalid-feedback" })
+                </div>
+
+                <div class="mb-3">
+                    <label for="Montant" class="form-label">Montant <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control @(ModelState.IsValidField("Montant") ? "" : "is-invalid")" 
+                           id="Montant" name="Montant" step="0.01" placeholder="0.00" required>
+                    @Html.ValidationMessageFor(m => m.Montant, "", new { @class = "invalid-feedback" })
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="@Url.Action("Lister", "Inscription")" class="btn btn-secondary">Annuler</a>
+                    <button type="submit" class="btn btn-primary">Créer l'Inscription</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

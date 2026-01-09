@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "examen_csharp_sur_table", "examen_csharp_sur_table.csproj", "{589237C3-3032-E29A-486A-3C3244D32DCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{589237C3-3032-E29A-486A-3C3244D32DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{589237C3-3032-E29A-486A-3C3244D32DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{589237C3-3032-E29A-486A-3C3244D32DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{589237C3-3032-E29A-486A-3C3244D32DCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33E091AA-69D5-415F-940D-BD07DFC28390}
+	EndGlobalSection
+EndGlobal

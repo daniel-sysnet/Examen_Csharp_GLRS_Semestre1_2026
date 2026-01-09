@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Accueil - Gestion des Inscriptions";
+}
+
+<div class="text-center">
+    <h1 class="display-4 mt-5">Système de Gestion des Inscriptions</h1>
+    <p class="lead">Application de gestion des inscriptions des étudiants</p>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">Créer une Inscription</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Enregistrer une nouvelle inscription pour un étudiant</p>
+                    <a href="@Url.Action("Creer", "Inscription")" class="btn btn-primary">Créer une Inscription</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0">Consulter les Inscriptions</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Voir la liste de toutes les inscriptions</p>
+                    <a href="@Url.Action("Lister", "Inscription")" class="btn btn-success">Consulter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="alert alert-info">
+                <h6>À propos de cette application</h6>
+                <ul class="mb-0">
+                    <li>Architecture par couche (Layered Architecture)</li>
+                    <li>Principes SOLID respectés</li>
+                    <li>Entity Framework Core pour l'accès aux données</li>
+                    <li>SQL Server pour la persistance</li>
+                    <li>Bootstrap 5 pour l'interface utilisateur</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
