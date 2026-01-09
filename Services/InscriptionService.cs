@@ -1,44 +1,32 @@
 using Microsoft.EntityFrameworkCore;
 using examen_csharp_sur_table.Data;
 using examen_csharp_sur_table.Models;
+using examen_csharp_sur_table.Repositories;
 
 namespace examen_csharp_sur_table.Services;
 
 public class InscriptionService : IInscriptionService
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IInscriptionRepository _repository;
 
-    public InscriptionService(ApplicationDbContext context)
+    public InscriptionService(IInscriptionRepository repository)
     {
-        _context = context;
+        _repository = repository;
     }
 
     public async Task<IEnumerable<Inscription>> GetInscriptionsParClasseAsync(int classeId)
     {
-        return await _context.Inscriptions
-            .Where(i => i.ClasseId == classeId)
-            .Include(i => i.Etudiant)
-            .Include(i => i.Classe)
-            .Include(i => i.AnneeScolaire)
-            .ToListAsync();
+        return await _repository.GetInscriptionsParClasseAsync(classeId);
     }
 
     public async Task<Inscription?> GetInscriptionParIdAsync(int id)
     {
-        return await _context.Inscriptions
-            .Include(i => i.Etudiant)
-            .Include(i => i.Classe)
-            .Include(i => i.AnneeScolaire)
-            .FirstOrDefaultAsync(i => i.Id == id);
+        return await _repository.GetInscriptionWithDetailsAsync(id);
     }
 
     public async Task<IEnumerable<Inscription>> GetToutesLesInscriptionsAsync()
     {
-        return await _context.Inscriptions
-            .Include(i => i.Etudiant)
-            .Include(i => i.Classe)
-            .Include(i => i.AnneeScolaire)
-            .ToListAsync();
+        return await _repository.GetToutesLesInscriptionsAvecDetailsAsync();
     }
 
     public async Task AjouterInscriptionAsync(Inscription inscription)
@@ -47,35 +35,30 @@ public class InscriptionService : IInscriptionService
             throw new ArgumentNullException(nameof(inscription));
 
         inscription.Date = DateTime.Now;
-        _context.Inscriptions.Add(inscription);
-        await _context.SaveChangesAsync();
+        await _repository.AddAsync(inscription);
     }
 
     public async Task SupprimerInscriptionAsync(int id)
     {
-        var inscription = await _context.Inscriptions.FindAsync(id);
+        var inscription = await _repository.GetByIdAsync(id);
         if (inscription == null)
             throw new KeyNotFoundException($"L'inscription avec l'id {id} n'a pas été trouvée.");
 
-        _context.Inscriptions.Remove(inscription);
-        await _context.SaveChangesAsync();
+        await _repository.DeleteAsync(id);
     }
 
     public async Task<IEnumerable<Etudiant>> GetEtudiantsDisponiblesAsync()
     {
-        return await _context.Etudiants.OrderBy(e => e.Nom).ToListAsync();
+        return await _repository.GetEtudiantsDisponiblesAsync();
     }
 
     public async Task<IEnumerable<Classe>> GetClassesAsync()
     {
-        return await _context.Classes.OrderBy(c => c.Code).ToListAsync();
+        return await _repository.GetClassesAsync();
     }
 
     public async Task<IEnumerable<AnneeScolaire>> GetAnneesScolaresActuelsAsync()
     {
-        return await _context.AnneesScolaires
-            .Where(a => a.Statut == Statut.EnCours)
-            .OrderBy(a => a.Code)
-            .ToListAsync();
+        return await _repository.GetAnneesScolaresActuelsAsync();
     }
 }

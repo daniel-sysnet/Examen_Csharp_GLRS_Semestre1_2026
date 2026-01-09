@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using examen_csharp_sur_table.Data;
 using examen_csharp_sur_table.Services;
+using examen_csharp_sur_table.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 
+builder.Services.AddScoped<IInscriptionRepository, InscriptionRepository>();
 builder.Services.AddScoped<IInscriptionService, InscriptionService>();
 
 var app = builder.Build();
