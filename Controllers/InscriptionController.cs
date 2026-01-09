@@ -15,6 +15,7 @@ public class InscriptionController : Controller
         _logger = logger;
     }
 
+    // Affiche le formulaire pour créer une nouvelle inscription
     public async Task<IActionResult> Creer()
     {
         try
@@ -37,6 +38,7 @@ public class InscriptionController : Controller
         }
     }
 
+    // Traite la soumission du formulaire pour créer une inscription
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Creer(Inscription inscription)
@@ -68,6 +70,7 @@ public class InscriptionController : Controller
         }
     }
 
+    // Affiche les inscriptions filtrées par une classe spécifique
     public async Task<IActionResult> ListerParClasse(int classeId)
     {
         try
@@ -95,6 +98,7 @@ public class InscriptionController : Controller
         }
     }
 
+    // Affiche la liste de toutes les inscriptions
     public async Task<IActionResult> Lister()
     {
         try
@@ -113,6 +117,7 @@ public class InscriptionController : Controller
         }
     }
 
+    // Affiche la page de confirmation pour supprimer une inscription
     public async Task<IActionResult> Supprimer(int id)
     {
         try
@@ -134,6 +139,7 @@ public class InscriptionController : Controller
         }
     }
 
+    // Traite la suppression confirmée d'une inscription
     [HttpPost]
     [ActionName("Supprimer")]
     [ValidateAntiForgeryToken]
