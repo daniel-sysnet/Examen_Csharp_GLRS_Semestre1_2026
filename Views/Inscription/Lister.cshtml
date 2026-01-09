@@ -66,7 +66,7 @@
                             <td>@inscription.Etudiant?.Nom @inscription.Etudiant?.Prenom</td>
                             <td>@inscription.Classe?.Code</td>
                             <td>@inscription.AnneeScolaire?.Code</td>
-                            <td class="text-end">@inscription.Montant.ToString("C")</td>
+                            <td class="text-end">@inscription.Montant.ToString("N0") FCFA</td>
                             <td>
                                 <a href="@Url.Action("Supprimer", "Inscription", new { id = inscription.Id })" 
                                    class="btn btn-sm btn-danger">

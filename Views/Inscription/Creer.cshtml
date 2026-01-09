@@ -22,7 +22,7 @@
 
                 <div class="mb-3">
                     <label for="EtudiantId" class="form-label">Étudiant <span class="text-danger">*</span></label>
-                    <select class="form-select @(ModelState.IsValidField("EtudiantId") ? "" : "is-invalid")" 
+                    <select class="form-select" 
                             id="EtudiantId" name="EtudiantId" required>
                         <option value="">-- Sélectionner un étudiant --</option>
                         @foreach (var etudiant in ViewBag.Etudiants)
@@ -35,7 +35,7 @@
 
                 <div class="mb-3">
                     <label for="ClasseId" class="form-label">Classe <span class="text-danger">*</span></label>
-                    <select class="form-select @(ModelState.IsValidField("ClasseId") ? "" : "is-invalid")" 
+                    <select class="form-select" 
                             id="ClasseId" name="ClasseId" required>
                         <option value="">-- Sélectionner une classe --</option>
                         @foreach (var classe in ViewBag.Classes)
@@ -48,7 +48,7 @@
 
                 <div class="mb-3">
                     <label for="AnneeScolaireId" class="form-label">Année Scolaire <span class="text-danger">*</span></label>
-                    <select class="form-select @(ModelState.IsValidField("AnneeScolaireId") ? "" : "is-invalid")" 
+                    <select class="form-select" 
                             id="AnneeScolaireId" name="AnneeScolaireId" required>
                         <option value="">-- Sélectionner une année scolaire --</option>
                         @foreach (var annee in ViewBag.Annees)
@@ -61,7 +61,7 @@
 
                 <div class="mb-3">
                     <label for="Montant" class="form-label">Montant <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control @(ModelState.IsValidField("Montant") ? "" : "is-invalid")" 
+                    <input type="number" class="form-control" 
                            id="Montant" name="Montant" step="0.01" placeholder="0.00" required>
                     @Html.ValidationMessageFor(m => m.Montant, "", new { @class = "invalid-feedback" })
                 </div>

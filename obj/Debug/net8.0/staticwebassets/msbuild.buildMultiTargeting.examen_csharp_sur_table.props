@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/examen_csharp_sur_table.props" />
+</Project>

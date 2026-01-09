@@ -7,6 +7,5 @@ public class Etudiant
     public string Nom { get; set; } = string.Empty;
     public string Prenom { get; set; } = string.Empty;
 
-    // Relation One-To-Many avec Inscription
     public ICollection<Inscription> Inscriptions { get; set; } = new List<Inscription>();
 }

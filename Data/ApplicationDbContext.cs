@@ -19,7 +19,6 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // Configuration des relations
         modelBuilder.Entity<Inscription>()
             .HasOne(i => i.Etudiant)
             .WithMany(e => e.Inscriptions)
@@ -38,13 +37,11 @@ public class ApplicationDbContext : DbContext
             .HasForeignKey(i => i.AnneeScolaireId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        // Initialisation des données
         InitializeData(modelBuilder);
     }
 
     private void InitializeData(ModelBuilder modelBuilder)
     {
-        // Initialisation des années scolaires
         modelBuilder.Entity<AnneeScolaire>().HasData(
             new AnneeScolaire { Id = 1, Code = "2023-2024", Libelle = "Année Scolaire 2023-2024", Statut = Statut.Cloturee },
             new AnneeScolaire { Id = 2, Code = "2024-2025", Libelle = "Année Scolaire 2024-2025", Statut = Statut.EnCours }
@@ -59,20 +56,20 @@ public class ApplicationDbContext : DbContext
 
         // Initialisation des étudiants
         modelBuilder.Entity<Etudiant>().HasData(
-            new Etudiant { Id = 1, Matricule = "STD001", Nom = "Dupont", Prenom = "Jean" },
-            new Etudiant { Id = 2, Matricule = "STD002", Nom = "Martin", Prenom = "Marie" },
-            new Etudiant { Id = 3, Matricule = "STD003", Nom = "Bernard", Prenom = "Pierre" },
-            new Etudiant { Id = 4, Matricule = "STD004", Nom = "Thomas", Prenom = "Sophie" },
-            new Etudiant { Id = 5, Matricule = "STD005", Nom = "Robert", Prenom = "Luc" }
+            new Etudiant { Id = 1, Matricule = "STD001", Nom = "Diallo", Prenom = "Moussa" },
+            new Etudiant { Id = 2, Matricule = "STD002", Nom = "Ndiaye", Prenom = "Fatou" },
+            new Etudiant { Id = 3, Matricule = "STD003", Nom = "Sow", Prenom = "Amadou" },
+            new Etudiant { Id = 4, Matricule = "STD004", Nom = "Ba", Prenom = "Aïssatou" },
+            new Etudiant { Id = 5, Matricule = "STD005", Nom = "Traore", Prenom = "Ibrahima" }
         );
 
         // Initialisation des inscriptions
         modelBuilder.Entity<Inscription>().HasData(
-            new Inscription { Id = 1, EtudiantId = 1, ClasseId = 1, AnneeScolaireId = 2, Date = new DateTime(2024, 9, 15), Montant = 500.00m },
-            new Inscription { Id = 2, EtudiantId = 2, ClasseId = 1, AnneeScolaireId = 2, Date = new DateTime(2024, 9, 16), Montant = 500.00m },
-            new Inscription { Id = 3, EtudiantId = 3, ClasseId = 2, AnneeScolaireId = 2, Date = new DateTime(2024, 9, 17), Montant = 550.00m },
-            new Inscription { Id = 4, EtudiantId = 4, ClasseId = 3, AnneeScolaireId = 2, Date = new DateTime(2024, 9, 18), Montant = 600.00m },
-            new Inscription { Id = 5, EtudiantId = 5, ClasseId = 1, AnneeScolaireId = 1, Date = new DateTime(2023, 9, 10), Montant = 500.00m }
+            new Inscription { Id = 1, EtudiantId = 1, ClasseId = 1, AnneeScolaireId = 2, Date = new DateTime(2024, 9, 15), Montant = 50000.00m },
+            new Inscription { Id = 2, EtudiantId = 2, ClasseId = 1, AnneeScolaireId = 2, Date = new DateTime(2024, 9, 16), Montant = 50000.00m },
+            new Inscription { Id = 3, EtudiantId = 3, ClasseId = 2, AnneeScolaireId = 2, Date = new DateTime(2024, 9, 17), Montant = 55000.00m },
+            new Inscription { Id = 4, EtudiantId = 4, ClasseId = 3, AnneeScolaireId = 2, Date = new DateTime(2024, 9, 18), Montant = 60000.00m },
+            new Inscription { Id = 5, EtudiantId = 5, ClasseId = 1, AnneeScolaireId = 1, Date = new DateTime(2023, 9, 10), Montant = 50000.00m }
         );
     }
 }

@@ -7,6 +7,5 @@ public class AnneeScolaire
     public string Libelle { get; set; } = string.Empty;
     public Statut Statut { get; set; } = Statut.EnCours;
 
-    // Relation One-To-Many avec Inscription
     public ICollection<Inscription> Inscriptions { get; set; } = new List<Inscription>();
 }
